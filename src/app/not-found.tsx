@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Home, ArrowLeft } from 'lucide-react';
 
@@ -10,7 +12,7 @@ export default function NotFound() {
           <h1 className="text-4xl font-bold text-gray-800 mb-2">Oops!</h1>
           <h2 className="text-xl text-gray-600 mb-4">Page Not Found</h2>
           <p className="text-gray-500 mb-6">
-            Looks like this LEGO piece is missing! Don't worry, we can help you find your way back.
+            Looks like this LEGO piece is missing! Don&apos;t worry, we can help you find your way back.
           </p>
         </div>
         

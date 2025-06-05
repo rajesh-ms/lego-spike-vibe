@@ -65,9 +65,8 @@ const achievements: Achievement[] = [
 ];
 
 export default function AchievementSystem() {
-export default function AchievementSystem() {
   const [userAchievements, setUserAchievements] = useState<Achievement[]>(achievements);
-  const [showNotification, setShowNotification] = useState<string | null>(null);
+  // const [showNotification, setShowNotification] = useState<string | null>(null);
   // Load achievements from localStorage
   useEffect(() => {
     const saved = localStorage.getItem('lego-achievements');
@@ -79,23 +78,15 @@ export default function AchievementSystem() {
         console.error('Failed to load achievements:', error);
       }
     }
-  }, []);
+  }, []);  // Save achievements to localStorage
+  // const saveAchievements = (newAchievements: Achievement[]) => {
+  //   localStorage.setItem('lego-achievements', JSON.stringify(newAchievements));
+  //   setUserAchievements(newAchievements);
+  // };
 
-  // Save achievements to localStorage
-  const saveAchievements = (newAchievements: Achievement[]) => {
-    localStorage.setItem('lego-achievements', JSON.stringify(newAchievements));
-    setUserAchievements(newAchievements);
-  };  const unlockedCount = userAchievements.filter(a => a.unlocked).length;
-
+  const unlockedCount = userAchievements.filter(a => a.unlocked).length;
   return (
     <div className="space-y-4">
-      {/* Achievement Notification */}
-      {showNotification && (
-        <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-bounce">
-          🏆 Achievement Unlocked: {showNotification}!
-        </div>
-      )}
-
       {/* Achievement Summary */}
       <div className="bg-white rounded-lg p-4 shadow-md">
         <h3 className="text-lg font-bold text-gray-800 mb-2">Your Achievements</h3>

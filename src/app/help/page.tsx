@@ -193,12 +193,11 @@ export default function HelpPage() {
                 <li className="flex items-start gap-2">
                   <span className="text-green-500">•</span>
                   <span>Don&apos;t rush - understanding is more important than speed</span>
-                </li>
-              </ul>
+                </li>              </ul>
             </div>
           </div>
         </div>
-
+        
         {/* Contact & Resources */}
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Need More Help?</h2>

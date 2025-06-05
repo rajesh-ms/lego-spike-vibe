@@ -1,3 +1,5 @@
+'use client';
+
 import { Book, Users, Target, Code, Heart, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
@@ -43,7 +45,7 @@ export default function AboutPage() {
 
         {/* Features Section */}
         <div className="bg-white rounded-xl p-8 shadow-md mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">What You'll Learn</h2>
+          <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">What You&apos;ll Learn</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
