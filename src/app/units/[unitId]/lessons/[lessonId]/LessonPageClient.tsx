@@ -156,12 +156,11 @@ export default function LessonPageClient({ unitId, lessonId }: LessonPageClientP
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-6"
-          >
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          >            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <PythonEditor
                 value={code}
                 onChange={setCode}
-                height="400px"
+                height="500px"
                 hints={[
                   "Use descriptive variable names like 'motor_speed' instead of 'ms'",
                   "Remember to import the necessary SPIKE Prime modules at the top",
@@ -170,17 +169,6 @@ export default function LessonPageClient({ unitId, lessonId }: LessonPageClientP
                   "Don&apos;t forget to handle errors - robots can be unpredictable!"
                 ]}
               />
-            </div>
-
-            {/* Output */}
-            <div className="bg-gray-900 text-green-400 rounded-xl p-4 font-mono text-sm min-h-[150px]">
-              <div className="flex items-center gap-2 mb-2 text-gray-400">
-                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                <span>Output Console</span>
-              </div>
-              <pre className="whitespace-pre-wrap">
-                # Console output will appear here when you run code from the editor above...
-              </pre>
             </div>
           </motion.div>
         </div>
