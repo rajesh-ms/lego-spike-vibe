@@ -13,4 +13,6 @@ services:
   web:
     project: "."
     language: ts
-    host: staticwebapp
+    host: containerapp
+    docker:
+      path: "./Dockerfile"

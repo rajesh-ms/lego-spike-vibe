@@ -46,14 +46,17 @@ module keyVault './shared/keyvault.bicep' = {
   }
 }
 
-// Web frontend
-module web './app/web.bicep' = {
+// Web frontend - Container App
+module web './app/containerapp.bicep' = {
   name: 'web'
   params: {
     location: location
     tags: union(tags, { 'azd-service-name': 'web' })
-    name: '${abbrs.webStaticSites}${resourceToken}'
+    name: '${abbrs.appContainerApps}${resourceToken}'
+    containerAppsEnvironmentName: '${abbrs.appManagedEnvironments}${resourceToken}'
+    containerRegistryName: 'cr${resourceToken}'
     applicationInsightsConnectionString: monitoring.outputs.applicationInsightsConnectionString
+    imageName: 'nginx:latest'  // This will be replaced by azd during deployment
   }
 }
 
@@ -66,3 +69,5 @@ output AZURE_TENANT_ID string = tenant().tenantId
 output REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
 output RESOURCE_GROUP_ID string = resourceGroup().id
 output WEB_URI string = web.outputs.uri
+output AZURE_CONTAINER_REGISTRY_ENDPOINT string = web.outputs.containerRegistryLoginServer
+output AZURE_CONTAINER_REGISTRY_NAME string = web.outputs.containerRegistryName
