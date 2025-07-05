@@ -375,6 +375,1132 @@ print("Great job creating functions!")`
     ]
   },
   {
+    id: 'python-fundamentals',
+    title: 'Python Programming Fundamentals',
+    description: 'Complete 4-week Python course for beginners with hands-on exercises',
+    icon: '🐍',
+    color: 'bg-purple-500',
+    lessons: [
+      // Week 1: Python Basics
+      {
+        id: 'python-week1-intro',
+        title: 'Week 1: Getting Started with Python',
+        description: 'Introduction to Python programming, variables, and basic data types',
+        duration: 45,
+        difficulty: 'beginner',
+        type: 'coding',
+        objectives: [
+          'Understand what Python is and why we use it',
+          'Learn about variables and how to store information',
+          'Work with numbers, text, and basic math operations',
+          'Use the print() function and get user input',
+          'Write your first interactive Python programs'
+        ],
+        content: `# Welcome to Python Programming! 🐍
+
+## What is Python?
+Python is a programming language that's easy to learn and fun to use! It's named after a comedy group called "Monty Python" (not the snake!). Python is used to:
+- Create websites and apps
+- Control robots (like LEGO SPIKE Prime!)
+- Analyze data and solve problems
+- Create games and animations
+- And much more!
+
+## Your First Python Program
+Let's start with the traditional "Hello, World!" program:
+
+\`\`\`python
+print("Hello, World!")
+print("My name is Alex")
+print("I'm learning Python!")
+\`\`\`
+
+The \`print()\` function displays text on the screen. Text must be inside quotes!
+
+## Variables - Storing Information
+Variables are like labeled boxes that store information:
+
+\`\`\`python
+# Storing text (strings)
+name = "Alex"
+favorite_color = "blue"
+pet_name = "Fluffy"
+
+# Storing numbers
+age = 10
+score = 95
+temperature = 72
+
+# Displaying variables
+print("My name is", name)
+print("I am", age, "years old")
+print("My favorite color is", favorite_color)
+\`\`\`
+
+## Types of Data
+
+### Strings (Text)
+\`\`\`python
+message = "Hello there!"
+animal = "elephant"
+sound = "trumpet"
+
+# Combining strings
+greeting = "Hello, " + name + "!"
+print(greeting)
+\`\`\`
+
+### Numbers
+\`\`\`python
+# Whole numbers (integers)
+cats = 3
+dogs = 2
+fish = 5
+
+# Decimal numbers (floats)
+height = 4.5
+weight = 65.3
+
+# Math with numbers
+total_pets = cats + dogs + fish
+print("Total pets:", total_pets)
+\`\`\`
+
+## Getting Input from Users
+You can ask users to type information:
+
+\`\`\`python
+name = input("What's your name? ")
+age = input("How old are you? ")
+
+print("Nice to meet you,", name)
+print("Wow, you're", age, "years old!")
+\`\`\`
+
+## Practice Time!
+Try this example:
+
+\`\`\`python
+# Personal Introduction Program
+name = input("What's your name? ")
+age = input("How old are you? ")
+hobby = input("What's your favorite hobby? ")
+
+print("\\n=== About You ===")
+print("Name:", name)
+print("Age:", age)
+print("Hobby:", hobby)
+print("Nice to meet you,", name + "!")
+\`\`\``,
+        challengeDescription: 'Create a program that asks for personal information and creates a fun profile card.',
+        challengeCode: `# Challenge: Create Your Digital Profile Card
+print("🌟 Let's create your profile card! 🌟")
+
+# TODO: Ask for the user's name
+name = ""  # Fix this line
+
+# TODO: Ask for their age  
+age = ""   # Fix this line
+
+# TODO: Ask for their favorite animal
+animal = ""  # Fix this line
+
+# TODO: Ask for their favorite color
+color = ""   # Fix this line
+
+# TODO: Display a nice profile card
+print("\\n" + "="*30)
+print("     YOUR PROFILE CARD")
+print("="*30)
+# Add more print statements to display the information nicely
+
+print("You're awesome! 🎉")`
+      },
+      {
+        id: 'python-week1-math',
+        title: 'Week 1: Math and Problem Solving',
+        description: 'Learn math operations and solve real-world problems with Python',
+        duration: 45,
+        difficulty: 'beginner',
+        type: 'coding',
+        objectives: [
+          'Perform basic math operations (+, -, *, /)',
+          'Understand order of operations',
+          'Convert between different data types',
+          'Solve real-world math problems with code'
+        ],
+        content: `# Math in Python 🔢
+
+Python is excellent at math! Let's learn how to do calculations.
+
+## Basic Math Operations
+\`\`\`python
+# Addition
+result = 5 + 3  # result is 8
+
+# Subtraction  
+result = 10 - 4  # result is 6
+
+# Multiplication
+result = 6 * 7  # result is 42
+
+# Division
+result = 15 / 3  # result is 5.0
+
+# Exponents (power)
+result = 2 ** 3  # result is 8 (2 to the power of 3)
+
+# Remainder (modulo)
+result = 17 % 5  # result is 2
+\`\`\`
+
+## Order of Operations
+Python follows math rules (PEMDAS):
+
+\`\`\`python
+# Without parentheses
+result = 2 + 3 * 4  # result is 14 (not 20!)
+
+# With parentheses
+result = (2 + 3) * 4  # result is 20
+
+# Complex example
+result = (10 + 5) / 3 * 2  # result is 10.0
+\`\`\`
+
+## Converting Data Types
+\`\`\`python
+# Converting text to numbers
+age_text = "10"
+age_number = int(age_text)
+print("Next year you'll be", age_number + 1)
+
+# Converting numbers to text
+score = 95
+message = "Your score is " + str(score)
+print(message)
+\`\`\`
+
+## Problem Solving: Pizza Party Calculator
+\`\`\`python
+print("🍕 Pizza Party Calculator 🍕")
+
+people = int(input("How many people? "))
+slices_per_person = int(input("Slices per person? "))
+slices_per_pizza = 8
+
+total_slices = people * slices_per_person
+pizzas_needed = total_slices / slices_per_pizza
+
+print("\\nResults:")
+print("Total slices needed:", total_slices)
+print("Pizzas needed:", pizzas_needed)
+
+# Round up to whole pizzas
+import math
+pizzas_to_order = math.ceil(pizzas_needed)
+print("Pizzas to order:", pizzas_to_order)
+\`\`\``,
+        challengeDescription: 'Create a calculator for planning a birthday party with snacks and costs.',
+        challengeCode: `# Challenge: Birthday Party Planner
+print("🎉 Birthday Party Planner 🎂")
+
+# Get party information
+guests = int(input("How many guests are coming? "))
+cake_cost = float(input("How much does the cake cost? $"))
+decoration_cost = float(input("How much for decorations? $"))
+
+# Calculate per-person costs
+balloons_per_person = 3
+balloon_cost = 0.50  # 50 cents per balloon
+
+# TODO: Calculate total balloon cost
+total_balloon_cost = 0  # Fix this calculation
+
+# TODO: Calculate total party cost
+total_cost = 0  # Fix this calculation
+
+# TODO: Calculate cost per person
+cost_per_person = 0  # Fix this calculation
+
+print("\\n🎈 Party Planning Results:")
+print("Guests:", guests)
+print("Total balloons needed:", guests * balloons_per_person)
+# Add more print statements to show all the costs
+
+print("Have a great party! 🎉")`
+      },
+      // Week 2: Control Flow
+      {
+        id: 'python-week2-decisions',
+        title: 'Week 2: Making Decisions with If Statements',
+        description: 'Learn how to make programs that can make decisions and respond differently',
+        duration: 50,
+        difficulty: 'beginner',
+        type: 'coding',
+        objectives: [
+          'Understand boolean logic (True/False)',
+          'Use if, elif, and else statements',
+          'Compare values with comparison operators',
+          'Create programs that make smart decisions'
+        ],
+        content: `# Making Decisions in Python 🤔
+
+## Boolean Logic
+Computers make decisions based on True or False (called **booleans**).
+
+### Comparison Operators
+\`\`\`python
+# Equal to
+5 == 5    # True
+3 == 7    # False
+
+# Not equal
+5 != 3    # True
+4 != 4    # False
+
+# Greater than / Less than
+7 > 3     # True
+2 < 8     # True
+5 >= 5    # True (greater than or equal)
+3 <= 7    # True (less than or equal)
+\`\`\`
+
+## If Statements
+\`\`\`python
+age = 10
+
+if age >= 10:
+    print("You can ride the roller coaster!")
+    
+if age < 5:
+    print("You get in free!")
+\`\`\`
+
+## If-Else Statements
+\`\`\`python
+temperature = 75
+
+if temperature > 80:
+    print("It's hot! Wear shorts.")
+else:
+    print("It's cool. Bring a jacket.")
+\`\`\`
+
+## If-Elif-Else Statements
+\`\`\`python
+score = 85
+
+if score >= 90:
+    print("Amazing! You got an A!")
+elif score >= 80:
+    print("Great job! You got a B!")
+elif score >= 70:
+    print("Good work! You got a C!")
+else:
+    print("Keep practicing!")
+\`\`\`
+
+## Combining Conditions
+\`\`\`python
+age = 12
+height = 48  # inches
+
+# AND - both conditions must be true
+if age >= 10 and height >= 42:
+    print("You can ride the big roller coaster!")
+
+# OR - either condition can be true
+if age < 5 or height < 36:
+    print("You need adult supervision.")
+\`\`\`
+
+## Real Example: Number Guessing Game
+\`\`\`python
+import random
+
+secret_number = random.randint(1, 10)
+guess = int(input("Guess a number between 1 and 10: "))
+
+if guess == secret_number:
+    print("🎉 Amazing! You guessed it!")
+elif guess < secret_number:
+    print("📈 Too low! The number was", secret_number)
+else:
+    print("📉 Too high! The number was", secret_number)
+\`\`\``,
+        challengeDescription: 'Create a fun quiz game that gives different responses based on answers.',
+        challengeCode: `# Challenge: Animal Quiz Game
+print("🐾 Welcome to the Animal Quiz! 🐾")
+
+print("I'm thinking of an animal...")
+print("1. It has stripes")
+print("2. It's black and white") 
+print("3. It lives in Africa")
+
+guess = input("What animal am I thinking of? ").lower()
+
+# TODO: Add if statements to check the answer
+# The correct answer is "zebra"
+# Give different responses for close answers like "horse" or "donkey"
+# Give encouragement for any attempt!
+
+print("Thanks for playing! 🎮")`
+      },
+      {
+        id: 'python-week2-loops',
+        title: 'Week 2: Loops - Repeating Actions',
+        description: 'Learn how to make programs repeat actions automatically',
+        duration: 50,
+        difficulty: 'beginner',
+        type: 'coding',
+        objectives: [
+          'Understand why loops are useful',
+          'Use for loops to repeat actions',
+          'Use while loops for conditional repetition',
+          'Create patterns and solve problems with loops'
+        ],
+        content: `# Loops in Python 🔄
+
+## Why Use Loops?
+Instead of writing the same code over and over, we can use loops!
+
+### Without Loops (tedious):
+\`\`\`python
+print("🌟")
+print("🌟")
+print("🌟")
+print("🌟")
+print("🌟")
+\`\`\`
+
+### With Loops (smart):
+\`\`\`python
+for i in range(5):
+    print("🌟")
+\`\`\`
+
+## For Loops - Repeat a Specific Number of Times
+\`\`\`python
+# Count from 0 to 4
+for i in range(5):
+    print("Count:", i)
+
+# Count from 1 to 10
+for i in range(1, 11):
+    print("Number:", i)
+
+# Count by 2s
+for i in range(0, 11, 2):
+    print("Even number:", i)
+\`\`\`
+
+## Loop Through Lists
+\`\`\`python
+animals = ["cat", "dog", "bird", "fish"]
+
+for animal in animals:
+    print("I love my", animal)
+
+colors = ["red", "blue", "green", "yellow"]
+for color in colors:
+    print("🎨", color.upper())
+\`\`\`
+
+## While Loops - Repeat While Something is True
+\`\`\`python
+countdown = 5
+
+while countdown > 0:
+    print("Countdown:", countdown)
+    countdown = countdown - 1
+
+print("🚀 Blast off!")
+\`\`\`
+
+## Fun Patterns with Loops
+\`\`\`python
+# Triangle pattern
+for i in range(1, 6):
+    stars = "⭐" * i
+    print(stars)
+
+# Multiplication table
+number = 5
+for i in range(1, 11):
+    result = number * i
+    print(f"{number} x {i} = {result}")
+\`\`\`
+
+## Interactive Example: Password Checker
+\`\`\`python
+correct_password = "python123"
+attempts = 0
+max_attempts = 3
+
+while attempts < max_attempts:
+    password = input("Enter password: ")
+    
+    if password == correct_password:
+        print("🔓 Access granted!")
+        break
+    else:
+        attempts += 1
+        remaining = max_attempts - attempts
+        if remaining > 0:
+            print(f"❌ Wrong! {remaining} attempts left.")
+        else:
+            print("🔒 Access denied!")
+\`\`\``,
+        challengeDescription: 'Create a program that draws ASCII art patterns using loops.',
+        challengeCode: `# Challenge: ASCII Art Generator
+print("🎨 ASCII Art Generator 🎨")
+
+# TODO: Ask the user what size triangle they want (1-10)
+size = 5  # Change this to get input from user
+
+print("\\nDrawing a triangle:")
+# TODO: Use a for loop to draw a triangle
+# Each row should have 1 more star than the previous
+# Row 1: *
+# Row 2: **  
+# Row 3: ***
+# etc.
+
+print("\\nDrawing a square:")
+# TODO: Use nested loops to draw a square
+# The square should be 'size' x 'size'
+
+print("\\nDrawing a countdown:")
+# TODO: Use a while loop to count down from 'size' to 1
+# Then print "🎉 Happy New Year!"
+
+print("Great job creating art with code! 🌟")`
+      },
+      // Week 3: Functions and Lists
+      {
+        id: 'python-week3-functions',
+        title: 'Week 3: Functions - Organizing Your Code',
+        description: 'Learn how to create reusable functions to organize and simplify your code',
+        duration: 50,
+        difficulty: 'intermediate',
+        type: 'coding',
+        objectives: [
+          'Understand what functions are and why they are useful',
+          'Create functions that take parameters',
+          'Return values from functions',
+          'Organize code into logical, reusable pieces'
+        ],
+        content: `# Functions in Python 🔧
+
+## What Are Functions?
+Functions are like recipes - they contain instructions that you can use over and over!
+
+## Basic Functions
+\`\`\`python
+def say_hello():
+    print("Hello there!")
+    print("Welcome to Python!")
+
+# Call the function
+say_hello()
+\`\`\`
+
+## Functions with Parameters
+\`\`\`python
+def greet_person(name):
+    print(f"Hello, {name}!")
+    print("Nice to meet you!")
+
+# Call with different names
+greet_person("Alex")
+greet_person("Sam")
+greet_person("Jordan")
+\`\`\`
+
+## Functions with Multiple Parameters
+\`\`\`python
+def calculate_area(length, width):
+    area = length * width
+    print(f"The area is {area} square units")
+
+calculate_area(5, 3)
+calculate_area(10, 7)
+\`\`\`
+
+## Functions that Return Values
+\`\`\`python
+def add_numbers(a, b):
+    result = a + b
+    return result
+
+# Use the returned value
+sum1 = add_numbers(5, 3)
+sum2 = add_numbers(10, 15)
+print("First sum:", sum1)
+print("Second sum:", sum2)
+\`\`\`
+
+## Real Example: Temperature Converter
+\`\`\`python
+def celsius_to_fahrenheit(celsius):
+    fahrenheit = (celsius * 9/5) + 32
+    return fahrenheit
+
+def fahrenheit_to_celsius(fahrenheit):
+    celsius = (fahrenheit - 32) * 5/9
+    return celsius
+
+# Test the functions
+temp_c = 25
+temp_f = celsius_to_fahrenheit(temp_c)
+print(f"{temp_c}°C = {temp_f}°F")
+
+temp_f = 77
+temp_c = fahrenheit_to_celsius(temp_f)
+print(f"{temp_f}°F = {temp_c}°C")
+\`\`\`
+
+## Functions with Default Parameters
+\`\`\`python
+def create_greeting(name, greeting="Hello"):
+    return f"{greeting}, {name}!"
+
+print(create_greeting("Alex"))  # Uses default "Hello"
+print(create_greeting("Sam", "Hi"))  # Uses "Hi"
+\`\`\`
+
+## Organizing Code with Functions
+\`\`\`python
+def get_user_info():
+    name = input("What's your name? ")
+    age = int(input("How old are you? "))
+    return name, age
+
+def calculate_birth_year(age):
+    import datetime
+    current_year = datetime.datetime.now().year
+    birth_year = current_year - age
+    return birth_year
+
+def display_info(name, birth_year):
+    print(f"\\n🎂 {name}, you were born in {birth_year}!")
+
+# Main program
+name, age = get_user_info()
+birth_year = calculate_birth_year(age)
+display_info(name, birth_year)
+\`\`\``,
+        challengeDescription: 'Create a calculator program using functions for each operation.',
+        challengeCode: `# Challenge: Function Calculator
+print("🧮 Function Calculator 🧮")
+
+def add(a, b):
+    # TODO: Return the sum of a and b
+    pass
+
+def subtract(a, b):
+    # TODO: Return a minus b
+    pass
+
+def multiply(a, b):
+    # TODO: Return a times b
+    pass
+
+def divide(a, b):
+    # TODO: Return a divided by b (watch out for dividing by zero!)
+    pass
+
+def get_numbers():
+    # TODO: Ask user for two numbers and return them
+    pass
+
+def show_menu():
+    print("\\nChoose an operation:")
+    print("1. Add")
+    print("2. Subtract") 
+    print("3. Multiply")
+    print("4. Divide")
+
+# TODO: Create a main program that:
+# 1. Shows the menu
+# 2. Gets the user's choice
+# 3. Gets two numbers
+# 4. Calls the appropriate function
+# 5. Shows the result
+
+print("Thanks for using the calculator! 🎉")`
+      },
+      {
+        id: 'python-week3-lists',
+        title: 'Week 3: Lists - Storing Multiple Items',
+        description: 'Learn how to work with lists to store and manipulate collections of data',
+        duration: 50,
+        difficulty: 'intermediate',
+        type: 'coding',
+        objectives: [
+          'Create and manipulate lists',
+          'Access and modify list items',
+          'Use list methods to add, remove, and organize items',
+          'Loop through lists to process data'
+        ],
+        content: `# Lists in Python 📝
+
+## What Are Lists?
+Lists are like shopping lists - they can hold multiple items in order.
+
+## Creating Lists
+\`\`\`python
+# Empty list
+shopping_list = []
+
+# List with items
+fruits = ["apple", "banana", "orange", "grape"]
+numbers = [1, 2, 3, 4, 5]
+mixed = ["hello", 42, True, 3.14]
+
+print("Fruits:", fruits)
+\`\`\`
+
+## Accessing List Items
+\`\`\`python
+animals = ["cat", "dog", "bird", "fish"]
+
+# First item (index 0)
+print("First animal:", animals[0])
+
+# Last item
+print("Last animal:", animals[-1])
+
+# Second item
+print("Second animal:", animals[1])
+\`\`\`
+
+## Modifying Lists
+\`\`\`python
+colors = ["red", "blue", "green"]
+
+# Change an item
+colors[1] = "purple"
+print("Modified colors:", colors)
+
+# Add items
+colors.append("yellow")  # Add to end
+colors.insert(1, "orange")  # Insert at position 1
+print("After adding:", colors)
+
+# Remove items
+colors.remove("red")  # Remove by value
+last_color = colors.pop()  # Remove and return last item
+print("After removing:", colors)
+print("Removed color:", last_color)
+\`\`\`
+
+## List Methods
+\`\`\`python
+numbers = [3, 1, 4, 1, 5, 9, 2, 6]
+
+# Length of list
+print("Length:", len(numbers))
+
+# Sort the list
+numbers.sort()
+print("Sorted:", numbers)
+
+# Count occurrences
+count_1 = numbers.count(1)
+print("Number of 1s:", count_1)
+
+# Find index of item
+index = numbers.index(5)
+print("Index of 5:", index)
+\`\`\`
+
+## Looping Through Lists
+\`\`\`python
+hobbies = ["reading", "gaming", "sports", "music"]
+
+# Loop through items
+for hobby in hobbies:
+    print("I enjoy", hobby)
+
+# Loop with index
+for i in range(len(hobbies)):
+    print(f"{i+1}. {hobbies[i]}")
+
+# Loop with enumerate
+for index, hobby in enumerate(hobbies):
+    print(f"#{index+1}: {hobby}")
+\`\`\`
+
+## List Slicing
+\`\`\`python
+letters = ["a", "b", "c", "d", "e", "f"]
+
+# Get first 3 items
+first_three = letters[0:3]  # or letters[:3]
+print("First three:", first_three)
+
+# Get last 2 items
+last_two = letters[-2:]
+print("Last two:", last_two)
+
+# Get middle items
+middle = letters[2:4]
+print("Middle:", middle)
+\`\`\`
+
+## Real Example: Grade Manager
+\`\`\`python
+def add_grade(grades, new_grade):
+    grades.append(new_grade)
+    print(f"Added grade: {new_grade}")
+
+def calculate_average(grades):
+    if len(grades) == 0:
+        return 0
+    total = sum(grades)
+    average = total / len(grades)
+    return average
+
+def show_grades(grades):
+    print("\\nYour grades:")
+    for i, grade in enumerate(grades):
+        print(f"  {i+1}. {grade}")
+    
+    avg = calculate_average(grades)
+    print(f"Average: {avg:.1f}")
+
+# Example usage
+student_grades = []
+add_grade(student_grades, 85)
+add_grade(student_grades, 92)
+add_grade(student_grades, 78)
+show_grades(student_grades)
+\`\`\``,
+        challengeDescription: 'Create a to-do list manager with functions to add, remove, and display tasks.',
+        challengeCode: `# Challenge: To-Do List Manager
+print("📝 To-Do List Manager 📝")
+
+# Start with an empty to-do list
+todo_list = []
+
+def add_task(task_list, task):
+    # TODO: Add the task to the list
+    # TODO: Print a confirmation message
+    pass
+
+def remove_task(task_list, task_number):
+    # TODO: Remove the task at the given position (remember: lists start at 0!)
+    # TODO: Handle the case where the number is invalid
+    pass
+
+def show_tasks(task_list):
+    # TODO: Display all tasks with numbers
+    # TODO: If list is empty, show a friendly message
+    pass
+
+def count_tasks(task_list):
+    # TODO: Return the number of tasks
+    pass
+
+# TODO: Create a simple menu system:
+# 1. Add task
+# 2. Remove task  
+# 3. Show tasks
+# 4. Quit
+
+# Test your functions:
+add_task(todo_list, "Walk the dog")
+add_task(todo_list, "Do homework")
+add_task(todo_list, "Play games")
+show_tasks(todo_list)
+
+print("Great job managing your tasks! ✅")`
+      },
+      // Week 4: Projects and Games
+      {
+        id: 'python-week4-projects',
+        title: 'Week 4: Building Your First Games',
+        description: 'Put everything together to create fun interactive games and projects',
+        duration: 60,
+        difficulty: 'intermediate',
+        type: 'project',
+        objectives: [
+          'Combine all Python concepts learned so far',
+          'Create interactive text-based games',
+          'Practice problem-solving and debugging',
+          'Build confidence in programming abilities'
+        ],
+        content: `# Building Games in Python 🎮
+
+## Text Adventure Game Framework
+Let's build an exciting adventure game using everything we've learned!
+
+\`\`\`python
+import random
+
+def display_intro():
+    print("🏰 Welcome to the Magic Castle Adventure! 🏰")
+    print("You are standing in front of a mysterious castle.")
+    print("There are three doors: Red, Blue, and Green.")
+    print()
+
+def get_player_choice():
+    choice = input("Which door do you choose? (red/blue/green): ").lower()
+    return choice
+
+def red_door_adventure():
+    print("\\n🔴 You enter the Red Door...")
+    print("You find a room full of treasure! 💎")
+    
+    action = input("Do you take the treasure? (yes/no): ").lower()
+    if action == "yes":
+        print("🎉 You win! But the treasure was cursed!")
+        print("You turn into a frog! 🐸")
+        return "frog_ending"
+    else:
+        print("😇 You are honest! The castle rewards you!")
+        print("You find the real treasure in the next room! 💰")
+        return "honest_ending"
+
+def blue_door_adventure():
+    print("\\n🔵 You enter the Blue Door...")
+    print("You meet a friendly wizard! 🧙‍♂️")
+    
+    riddle_answer = input("Wizard asks: 'What has keys but no locks?' ").lower()
+    if "piano" in riddle_answer or "keyboard" in riddle_answer:
+        print("🎼 Correct! The wizard gives you magical powers!")
+        return "wizard_ending"
+    else:
+        print("🤔 Not quite right, but the wizard likes your effort!")
+        print("He gives you a magic cookie instead! 🍪")
+        return "cookie_ending"
+
+def green_door_adventure():
+    print("\\n🟢 You enter the Green Door...")
+    print("You fall into a pit with a friendly dragon! 🐉")
+    
+    number = random.randint(1, 3)
+    guess = int(input("Dragon says: 'Guess my number (1-3) to escape!': "))
+    
+    if guess == number:
+        print(f"🎯 Correct! The number was {number}!")
+        print("The dragon flies you out of the castle! 🕊️")
+        return "dragon_ending"
+    else:
+        print(f"❌ Wrong! The number was {number}.")
+        print("Don't worry, the dragon is friendly and helps you escape anyway! 😊")
+        return "friendly_ending"
+
+def main_game():
+    display_intro()
+    
+    choice = get_player_choice()
+    
+    if choice == "red":
+        ending = red_door_adventure()
+    elif choice == "blue":
+        ending = blue_door_adventure()
+    elif choice == "green":
+        ending = green_door_adventure()
+    else:
+        print("That's not a valid choice! The castle vanishes! 👻")
+        ending = "vanish_ending"
+    
+    print(f"\\n🎭 You got the '{ending}' ending!")
+    print("Thanks for playing! 🎮")
+
+# Run the game
+main_game()
+\`\`\`
+
+## Number Guessing Game with Lives
+\`\`\`python
+import random
+
+def play_guessing_game():
+    print("🎲 Number Guessing Game 🎲")
+    print("I'm thinking of a number between 1 and 20!")
+    
+    secret_number = random.randint(1, 20)
+    lives = 5
+    guesses = []
+    
+    while lives > 0:
+        print(f"\\nLives remaining: ❤️ {lives}")
+        print(f"Previous guesses: {guesses}")
+        
+        try:
+            guess = int(input("Enter your guess: "))
+        except ValueError:
+            print("Please enter a valid number!")
+            continue
+            
+        guesses.append(guess)
+        
+        if guess == secret_number:
+            print(f"🎉 Congratulations! You guessed {secret_number}!")
+            print(f"It took you {len(guesses)} guesses!")
+            return True
+        elif guess < secret_number:
+            print("📈 Too low!")
+        else:
+            print("📉 Too high!")
+            
+        lives -= 1
+    
+    print(f"💀 Game Over! The number was {secret_number}")
+    return False
+
+# Play multiple rounds
+wins = 0
+games = 0
+
+while True:
+    games += 1
+    print(f"\\n🎯 Game #{games}")
+    
+    if play_guessing_game():
+        wins += 1
+    
+    play_again = input("\\nPlay again? (yes/no): ").lower()
+    if play_again != "yes":
+        break
+
+print(f"\\n📊 Final Score: {wins} wins out of {games} games!")
+print("Thanks for playing! 👋")
+\`\`\`
+
+## Rock Paper Scissors Tournament
+\`\`\`python
+import random
+
+def get_computer_choice():
+    choices = ["rock", "paper", "scissors"]
+    return random.choice(choices)
+
+def determine_winner(player, computer):
+    if player == computer:
+        return "tie"
+    elif (player == "rock" and computer == "scissors") or \\
+         (player == "paper" and computer == "rock") or \\
+         (player == "scissors" and computer == "paper"):
+        return "player"
+    else:
+        return "computer"
+
+def play_round():
+    print("\\n🥊 Round Start!")
+    player = input("Choose rock, paper, or scissors: ").lower()
+    
+    if player not in ["rock", "paper", "scissors"]:
+        print("Invalid choice! You forfeit this round.")
+        return "computer"
+    
+    computer = get_computer_choice()
+    print(f"You chose: {player}")
+    print(f"Computer chose: {computer}")
+    
+    winner = determine_winner(player, computer)
+    
+    if winner == "tie":
+        print("🤝 It's a tie!")
+    elif winner == "player":
+        print("🎉 You win this round!")
+    else:
+        print("🤖 Computer wins this round!")
+    
+    return winner
+
+def play_tournament():
+    print("🏆 Rock Paper Scissors Tournament! 🏆")
+    print("First to 3 wins is the champion!")
+    
+    player_score = 0
+    computer_score = 0
+    round_number = 0
+    
+    while player_score < 3 and computer_score < 3:
+        round_number += 1
+        print(f"\\n--- Round {round_number} ---")
+        print(f"Score: You {player_score} - {computer_score} Computer")
+        
+        result = play_round()
+        
+        if result == "player":
+            player_score += 1
+        elif result == "computer":
+            computer_score += 1
+    
+    print("\\n🎊 TOURNAMENT OVER! 🎊")
+    if player_score == 3:
+        print("🥇 You are the champion!")
+    else:
+        print("🥈 Computer is the champion! Better luck next time!")
+    
+    print(f"Final Score: You {player_score} - {computer_score} Computer")
+
+play_tournament()
+\`\`\``,
+        challengeDescription: 'Create your own unique text-based adventure game with multiple paths and endings.',
+        challengeCode: `# Challenge: Create Your Own Adventure Game!
+print("🎮 Adventure Game Creator 🎮")
+
+# TODO: Create your own adventure game using these guidelines:
+
+# 1. STORY SETUP
+# - Create an interesting setting (space station, underwater city, time machine, etc.)
+# - Give the player a clear goal
+# - Create at least 3 different paths/choices
+
+# 2. REQUIRED FEATURES
+# - Use functions to organize different parts of your game
+# - Include at least one random element (dice roll, random encounter, etc.)
+# - Have at least 3 different possible endings
+# - Include at least one mini-game or puzzle
+
+# 3. EXAMPLE STRUCTURE
+def game_intro():
+    # TODO: Write your story introduction
+    pass
+
+def path_one():
+    # TODO: Create first adventure path
+    pass
+
+def path_two():
+    # TODO: Create second adventure path  
+    pass
+
+def path_three():
+    # TODO: Create third adventure path
+    pass
+
+def mini_game():
+    # TODO: Create a simple game (math puzzle, riddle, etc.)
+    pass
+
+def main_game():
+    # TODO: Connect all your functions together
+    pass
+
+# BONUS CHALLENGES:
+# - Keep track of player inventory or health points
+# - Allow the player to enter their name and use it throughout
+# - Create a scoring system
+# - Add ASCII art for different scenes
+# - Include multiple mini-games
+
+print("Remember: Be creative and have fun!")
+print("Test each feature as you build it!")
+print("Most importantly: Make it YOUR story! ✨")
+
+# Your adventure game code starts here...`
+      }
+    ]
+  },
+  {
     id: 'movement',
     title: 'Movement',
     description: 'Programming motors and movement',
