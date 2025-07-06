@@ -56,7 +56,7 @@ module web './app/containerapp.bicep' = {
     containerAppsEnvironmentName: '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: 'cr${resourceToken}'
     applicationInsightsConnectionString: monitoring.outputs.applicationInsightsConnectionString
-    imageName: 'nginx:latest'  // This will be replaced by azd during deployment
+    imageName: 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
   }
 }
 

@@ -178,8 +178,21 @@ export default function PythonEditor({
                   for (const [varName, varValue] of variables) {
                     printContent = printContent.replace(new RegExp(`\\{${varName}\\}`, 'g'), varValue);
                   }
+                } else if (printContent.includes(',')) {
+                  // Handle comma-separated arguments
+                  const args = printContent.split(',').map(arg => {
+                    const trimmedArg = arg.trim();
+                    if ((trimmedArg.startsWith('"') && trimmedArg.endsWith('"')) || 
+                        (trimmedArg.startsWith("'") && trimmedArg.endsWith("'"))) {
+                      return trimmedArg.substring(1, trimmedArg.length - 1);
+                    }
+                    return variables.get(trimmedArg) || trimmedArg;
+                  });
+                  printContent = args.join(' ');
                 } else if (printContent.startsWith('"') || printContent.startsWith("'")) {
                   printContent = printContent.substring(1, printContent.length - 1);
+                } else {
+                  printContent = variables.get(printContent) || printContent;
                 }
                 
                 simulatedOutput += `  > ${printContent}\n`;
@@ -234,8 +247,20 @@ export default function PythonEditor({
                     const elsePrintMatch = elseLine.trim().match(/print\s*\(\s*(.+)\s*\)/);
                     if (elsePrintMatch) {
                       let printContent = elsePrintMatch[1];
-                      if (printContent.startsWith('"') || printContent.startsWith("'")) {
+                      if (printContent.includes(',')) {
+                        const args = printContent.split(',').map(arg => {
+                          const trimmedArg = arg.trim();
+                          if ((trimmedArg.startsWith('"') && trimmedArg.endsWith('"')) || 
+                              (trimmedArg.startsWith("'") && trimmedArg.endsWith("'"))) {
+                            return trimmedArg.substring(1, trimmedArg.length - 1);
+                          }
+                          return variables.get(trimmedArg) || trimmedArg;
+                        });
+                        printContent = args.join(' ');
+                      } else if (printContent.startsWith('"') || printContent.startsWith("'")) {
                         printContent = printContent.substring(1, printContent.length - 1);
+                      } else {
+                        printContent = variables.get(printContent) || printContent;
                       }
                       simulatedOutput += `  > ${printContent}\n`;
                     }
@@ -251,8 +276,20 @@ export default function PythonEditor({
               const ifPrintMatch = nextLine.trim().match(/print\s*\(\s*(.+)\s*\)/);
               if (ifPrintMatch) {
                 let printContent = ifPrintMatch[1];
-                if (printContent.startsWith('"') || printContent.startsWith("'")) {
+                if (printContent.includes(',')) {
+                  const args = printContent.split(',').map(arg => {
+                    const trimmedArg = arg.trim();
+                    if ((trimmedArg.startsWith('"') && trimmedArg.endsWith('"')) || 
+                        (trimmedArg.startsWith("'") && trimmedArg.endsWith("'"))) {
+                      return trimmedArg.substring(1, trimmedArg.length - 1);
+                    }
+                    return variables.get(trimmedArg) || trimmedArg;
+                  });
+                  printContent = args.join(' ');
+                } else if (printContent.startsWith('"') || printContent.startsWith("'")) {
                   printContent = printContent.substring(1, printContent.length - 1);
+                } else {
+                  printContent = variables.get(printContent) || printContent;
                 }
                 simulatedOutput += `  > ${printContent}\n`;
                 ifBlockExecuted = true;
@@ -284,11 +321,33 @@ export default function PythonEditor({
             for (const [varName, varValue] of variables) {
               printContent = printContent.replace(new RegExp(`\\{${varName}\\}`, 'g'), varValue);
             }
+          } else if (printContent.includes(',')) {
+            // Handle comma-separated arguments (most common Python print usage)
+            const args = printContent.split(',').map(arg => {
+              const trimmedArg = arg.trim();
+              
+              // Handle string literals
+              if ((trimmedArg.startsWith('"') && trimmedArg.endsWith('"')) || 
+                  (trimmedArg.startsWith("'") && trimmedArg.endsWith("'"))) {
+                return trimmedArg.substring(1, trimmedArg.length - 1);
+              }
+              
+              // Handle variables
+              if (variables.has(trimmedArg)) {
+                return variables.get(trimmedArg) || trimmedArg;
+              }
+              
+              // Handle numbers and other literals
+              return trimmedArg;
+            });
+            
+            // Join with spaces (default Python print behavior)
+            printContent = args.join(' ');
           } else if (printContent.startsWith('"') || printContent.startsWith("'")) {
             // Remove quotes for regular strings
             printContent = printContent.substring(1, printContent.length - 1);
           } else {
-            // Handle variable names directly
+            // Handle single variable names directly
             if (variables.has(printContent)) {
               printContent = variables.get(printContent) || printContent;
             }

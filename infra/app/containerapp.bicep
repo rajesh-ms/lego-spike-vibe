@@ -11,6 +11,7 @@ param containerAppsEnvironmentName string
 param containerRegistryName string
 
 @description('The Application Insights connection string.')
+@secure()
 param applicationInsightsConnectionString string
 
 @description('A dictionary of tag names and values to apply to the resources.')
@@ -67,11 +68,26 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-11-01-pr
   }
 }
 
+// User Assigned Managed Identity
+resource userIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
+  name: '${name}-identity'
+  location: location
+  tags: {
+    'azd-env-name': tags['azd-env-name']
+  }
+}
+
 // Container App
 resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
   name: name
   location: location
-  tags: tags
+  tags: tags  // This will include the azd-service-name tag
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${userIdentity.id}': {}
+    }
+  }
   properties: {
     managedEnvironmentId: containerAppsEnvironment.id
     configuration: {
@@ -80,6 +96,11 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
         external: true
         targetPort: 3000
         allowInsecure: false
+        corsPolicy: {
+          allowedOrigins: ['*']
+          allowedMethods: ['*']
+          allowedHeaders: ['*']
+        }
         traffic: [
           {
             latestRevision: true
@@ -90,15 +111,10 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
       registries: [
         {
           server: containerRegistry.properties.loginServer
-          username: containerRegistry.name
-          passwordSecretRef: 'registry-password'
+          identity: userIdentity.id
         }
       ]
       secrets: [
-        {
-          name: 'registry-password'
-          value: containerRegistry.listCredentials().passwords[0].value
-        }
         {
           name: 'appinsights-connection-string'
           value: applicationInsightsConnectionString
@@ -145,6 +161,17 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
         ]
       }
     }
+  }
+}
+
+// Role assignment for the managed identity to pull from the container registry
+resource acrPullRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(containerRegistry.id, userIdentity.id, '7f951dda-4ed3-4680-a7ca-43fe172d538d')
+  scope: containerRegistry
+  properties: {
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7f951dda-4ed3-4680-a7ca-43fe172d538d') // AcrPull role
+    principalId: userIdentity.properties.principalId
+    principalType: 'ServicePrincipal'
   }
 }
 

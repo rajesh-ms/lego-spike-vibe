@@ -14,5 +14,3 @@ services:
     project: "."
     language: ts
     host: containerapp
-    docker:
-      path: "./Dockerfile"
