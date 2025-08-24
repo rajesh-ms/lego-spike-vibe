@@ -15,7 +15,7 @@ export default function HomeClient() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
             <div>
               <h1 className="text-4xl font-bold mb-4">LEGO SPIKE Prime Programming</h1>
-              <p className="text-lg mb-6">Learn Python programming with LEGO SPIKE Prime and join the exciting SUBMERGED℠ season challenge!</p>
+              <p className="text-lg mb-6">Learn Python programming with LEGO SPIKE Prime and join the exciting UNEARTHED℠ season challenge!</p>
               <div className="flex flex-wrap gap-3">
                 <Link href="/units" className="bg-yellow-500 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors text-sm">
                   Start Learning
@@ -28,7 +28,7 @@ export default function HomeClient() {
             <div className="relative">
               <Image
                 src="/season-intro.jpg"
-                alt="FIRST LEGO League SUBMERGED Season"
+                alt="FIRST LEGO League UNEARTHED Season"
                 width={350}
                 height={220}
                 className="rounded-lg shadow-lg"
@@ -43,9 +43,9 @@ export default function HomeClient() {
       <section className="bg-gray-100 py-4">
         <div className="container mx-auto px-6">
           <div className="text-center mb-4">
-            <h2 className="text-xl font-bold text-gray-800 mb-2">SUBMERGED℠ Season 2024-2025</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-2">UNEARTHED℠ Season 2025-2026</h2>
             <p className="text-sm text-gray-600 max-w-xl mx-auto">
-              Dive into the current FIRST® LEGO® League season and explore underwater missions, 
+              Discover the current FIRST® LEGO® League season and explore archaeological missions, 
               robotics challenges, and innovative programming with LEGO SPIKE Prime!
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function HomeClient() {
             <div className="relative">
               <Image
                 src="/banner-left.jpg"
-                alt="SUBMERGED Season Challenge"
+                alt="UNEARTHED Season Challenge"
                 width={250}
                 height={140}
                 className="rounded-lg shadow-md w-full h-auto"
@@ -115,12 +115,12 @@ export default function HomeClient() {
                 <div className="flex items-center space-x-2">
                   <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
                   <a 
-                    href="https://www.firstlegoleague.org/season#resources" 
+                    href="https://www.first-lego-league.org/en/2025-26-season/challenge-resources" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-xs hover:text-yellow-300 transition-colors underline"
                   >
-                    Download SUBMERGED℠ season materials
+                    Download UNEARTHED℠ season materials
                   </a>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -147,7 +147,7 @@ export default function HomeClient() {
                 </div>
               </div>
               <a 
-                href="https://www.firstlegoleague.org/season" 
+                href="https://www.first-lego-league.org/en/2025-26-season" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block mt-3 bg-yellow-500 text-black px-3 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors text-xs"
