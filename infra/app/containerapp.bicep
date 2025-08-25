@@ -20,6 +20,9 @@ param tags object = {}
 @description('The container image name.')
 param imageName string
 
+@description('Environment variables for the container app.')
+param environmentVariables array = []
+
 // Log Analytics workspace for Container Apps
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
   name: '${name}-logs'
@@ -130,7 +133,7 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
             cpu: json('0.5')
             memory: '1Gi'
           }
-          env: [
+          env: concat([
             {
               name: 'NODE_ENV'
               value: 'production'
@@ -143,7 +146,7 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
               name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
               secretRef: 'appinsights-connection-string'
             }
-          ]
+          ], environmentVariables)
         }
       ]
       scale: {

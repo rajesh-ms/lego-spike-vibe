@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:db": "node scripts/deploy-database.js",
+    "postdeploy": "npm run deploy:db"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",

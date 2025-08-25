@@ -25,6 +25,9 @@ ENV NEXT_TELEMETRY_DISABLED 1
 # Build the application
 RUN npm run build
 
+# Standalone build for container deployment
+RUN echo "standalone" > .next/BUILD_ID
+
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app

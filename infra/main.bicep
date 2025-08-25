@@ -24,6 +24,9 @@ var tags = {
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, resourceGroup().id, environmentName))
 
+// Generate a unique SQL admin password
+var sqlAdminPassword = '${toUpper(substring(resourceToken, 0, 1))}${substring(resourceToken, 1, 10)}!${substring(resourceToken, 11, 4)}A1'
+
 // Monitor application with Azure Monitor
 module monitoring './shared/monitoring.bicep' = {
   name: 'monitoring'
@@ -46,6 +49,19 @@ module keyVault './shared/keyvault.bicep' = {
   }
 }
 
+// Azure SQL Database
+module database './shared/database.bicep' = {
+  name: 'database'
+  params: {
+    location: location
+    tags: tags
+    serverName: '${abbrs.sqlServers}${resourceToken}'
+    databaseName: 'LegoVibeDB'
+    administratorLogin: 'legovibeadmin'
+    administratorPassword: sqlAdminPassword
+  }
+}
+
 // Web frontend - Container App
 module web './app/containerapp.bicep' = {
   name: 'web'
@@ -57,6 +73,28 @@ module web './app/containerapp.bicep' = {
     containerRegistryName: 'cr${resourceToken}'
     applicationInsightsConnectionString: monitoring.outputs.applicationInsightsConnectionString
     imageName: 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
+    environmentVariables: [
+      {
+        name: 'AZURE_SQL_SERVER'
+        value: database.outputs.serverFqdn
+      }
+      {
+        name: 'AZURE_SQL_DATABASE'
+        value: database.outputs.databaseName
+      }
+      {
+        name: 'AZURE_SQL_USERNAME'
+        value: 'legovibeadmin'
+      }
+      {
+        name: 'AZURE_SQL_PASSWORD'
+        value: sqlAdminPassword
+      }
+      {
+        name: 'NODE_ENV'
+        value: 'production'
+      }
+    ]
   }
 }
 
@@ -71,3 +109,6 @@ output RESOURCE_GROUP_ID string = resourceGroup().id
 output WEB_URI string = web.outputs.uri
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = web.outputs.containerRegistryLoginServer
 output AZURE_CONTAINER_REGISTRY_NAME string = web.outputs.containerRegistryName
+output AZURE_SQL_SERVER string = database.outputs.serverFqdn
+output AZURE_SQL_DATABASE string = database.outputs.databaseName
+output AZURE_SQL_CONNECTION_STRING string = database.outputs.connectionString
