@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Blocks, Menu, X, Home, BookOpen, Code, Trophy } from 'lucide-react';
+import { Blocks, Menu, X, Home, BookOpen, Code, Trophy, Users } from 'lucide-react';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);  const navItems = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/units', label: 'Units', icon: BookOpen },
     { href: '/playground', label: 'Playground', icon: Code },
+    { href: '/meetings', label: 'Meetings', icon: Users },
     { href: '/progress', label: 'Progress', icon: Trophy },
   ];
 
