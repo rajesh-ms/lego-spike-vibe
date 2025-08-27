@@ -1,9 +1,7 @@
 // Mock database for local development without Azure SQL
 // This will be used when Azure SQL credentials are not available
 
-interface MockResult {
-  recordset: any[];
-}
+import { DbResult, QueryInputs } from './db-types';
 
 // Mock data for testing
 const mockUsers = [
@@ -108,7 +106,7 @@ Expected Outcomes:
   }
 ];
 
-export async function executeQuery(query: string, inputs?: Record<string, unknown>): Promise<MockResult> {
+export async function executeQuery(query: string, inputs?: QueryInputs): Promise<DbResult> {
   // Simple mock query parsing
   if (query.includes('FROM Users') || query.includes('FROM users')) {
     return { recordset: mockUsers };
@@ -122,12 +120,12 @@ export async function executeQuery(query: string, inputs?: Record<string, unknow
     let entries = mockLearningEntries;
     
     // Filter by meeting_id if provided
-    if (inputs?.meeting_id) {
+  if (inputs?.meeting_id) {
       entries = entries.filter(entry => entry.meeting_id === inputs.meeting_id);
     }
     
     // Filter by user_id if provided
-    if (inputs?.user_id) {
+  if (inputs?.user_id) {
       entries = entries.filter(entry => entry.user_id === inputs.user_id);
     }
     
@@ -136,10 +134,10 @@ export async function executeQuery(query: string, inputs?: Record<string, unknow
   
   // For INSERT/UPDATE queries, simulate success
   if (query.includes('INSERT') || query.includes('UPDATE')) {
-    const newId = Math.floor(Math.random() * 1000) + 100;
+  const newId = Math.floor(Math.random() * 1000) + 100;
     
     if (query.includes('Meetings')) {
-      const newMeeting = {
+  const newMeeting = {
         id: newId,
         title: inputs?.title || 'New Meeting',
         description: inputs?.description || '',
@@ -156,7 +154,7 @@ export async function executeQuery(query: string, inputs?: Record<string, unknow
     }
     
     if (query.includes('LearningEntries')) {
-      const newEntry = {
+  const newEntry = {
         id: newId,
         meeting_id: inputs?.meeting_id || 1,
         user_id: inputs?.user_id || 1,
@@ -176,7 +174,7 @@ export async function executeQuery(query: string, inputs?: Record<string, unknow
   return { recordset: [] };
 }
 
-export async function executeProcedure(procedureName: string, inputs?: Record<string, unknown>): Promise<MockResult> {
+export async function executeProcedure(procedureName: string, inputs?: QueryInputs): Promise<DbResult> {
   console.log(`Mock procedure call: ${procedureName}`, inputs);
   return { recordset: [] };
 }
