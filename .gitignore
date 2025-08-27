@@ -41,3 +41,13 @@ yarn-error.log*
 next-env.d.ts
 
 .fake
+
+# build/export artifacts
+*-swa-oryx/
+*.zip
+
+# local tools/config
+.claude/
+
+# stray file created on Windows sometimes
+nul
