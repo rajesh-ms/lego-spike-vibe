@@ -48,7 +48,7 @@ export default function CreateMeetingModal({ isOpen, onClose, onSuccess }: Creat
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/meetings/', {
+  const response = await fetch('/api/meetings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

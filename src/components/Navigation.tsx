@@ -3,14 +3,17 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Blocks, Menu, X, Home, BookOpen, Code, Trophy, Users } from 'lucide-react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function Navigation() {
+  const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);  const navItems = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/units', label: 'Units', icon: BookOpen },
     { href: '/playground', label: 'Playground', icon: Code },
     { href: '/meetings', label: 'Meetings', icon: Users },
     { href: '/progress', label: 'Progress', icon: Trophy },
+    { href: '/admin', label: 'Admin', icon: Users },
   ];
 
   return (
@@ -44,6 +47,11 @@ export default function Navigation() {
               <Trophy className="w-4 h-4" />
               <span className="text-sm font-medium">Level 1</span>
             </div>
+            {session ? (
+              <button onClick={() => signOut()} className="px-3 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">Sign out</button>
+            ) : (
+              <button onClick={() => signIn()} className="px-3 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">Sign in</button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}

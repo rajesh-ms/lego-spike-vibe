@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const meetingId = parseInt(id);
+    const meetingId = parseInt(id, 10);
     
     const result = await executeQuery(`
       SELECT 
@@ -22,7 +22,7 @@ export async function GET(
       return NextResponse.json({ error: 'Meeting not found' }, { status: 404 });
     }
     
-    return NextResponse.json({ meeting: result.recordset[0] });
+    return NextResponse.json({ meeting: (result as { recordset: unknown[] }).recordset[0] });
   } catch (error) {
     console.error('Error fetching meeting:', error);
     return NextResponse.json({ error: 'Failed to fetch meeting' }, { status: 500 });
@@ -35,8 +35,8 @@ export async function PUT(
 ) {
   try {
     const { id } = await params;
-    const meetingId = parseInt(id);
-    const body = await request.json();
+    const meetingId = parseInt(id, 10);
+  const body = await request.json();
     
     const result = await executeQuery(`
       UPDATE Meetings 
@@ -53,19 +53,19 @@ export async function PUT(
     `, {
       id: meetingId,
       title: body.title,
-      description: body.description || null,
-      meeting_date: new Date(body.meeting_date),
-      duration_minutes: body.duration_minutes || 60,
-      location: body.location || null,
-      agenda: body.agenda || null,
-      status: body.status || 'scheduled'
+      description: body.description ?? null,
+      meeting_date: body.meeting_date ? new Date(body.meeting_date) : new Date(),
+      duration_minutes: body.duration_minutes ?? 60,
+      location: body.location ?? null,
+      agenda: body.agenda ?? null,
+      status: body.status ?? 'scheduled'
     });
     
     if (result.recordset.length === 0) {
       return NextResponse.json({ error: 'Meeting not found' }, { status: 404 });
     }
     
-    return NextResponse.json({ meeting: result.recordset[0] });
+  return NextResponse.json({ meeting: (result as { recordset: unknown[] }).recordset[0] });
   } catch (error) {
     console.error('Error updating meeting:', error);
     return NextResponse.json({ error: 'Failed to update meeting' }, { status: 500 });

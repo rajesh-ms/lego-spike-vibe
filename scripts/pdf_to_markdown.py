@@ -2,6 +2,7 @@ import os
 from PyPDF2 import PdfReader
 from markdownify import markdownify as md
 
+
 def convert_pdf_to_markdown(pdf_path, output_dir):
     """
     Converts a PDF file to a Markdown file.
@@ -49,6 +50,7 @@ def main():
         if filename.endswith(".pdf"):
             pdf_path = os.path.join(pdf_dir, filename)
             convert_pdf_to_markdown(pdf_path, output_dir)
+
 
 if __name__ == "__main__":
     main()

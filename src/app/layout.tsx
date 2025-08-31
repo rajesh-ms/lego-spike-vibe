@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ToastProvider } from "@/components/Toast";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,11 +38,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-blue-50 via-purple-50 to-yellow-50 min-h-screen`}
       >
-        <ToastProvider>
-          <Navigation />
-          <main>{children}</main>
-          <Footer />
-        </ToastProvider>
+        <SessionProvider>
+          <ToastProvider>
+            <Navigation />
+            <main>{children}</main>
+            <Footer />
+          </ToastProvider>
+        </SessionProvider>
       </body>
     </html>
   );

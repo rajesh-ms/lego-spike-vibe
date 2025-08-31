@@ -192,68 +192,9 @@ Robot Mission Challenge Focus:
   'scheduled'
 );
 
--- Week 5-6: Mid-Season Development & "Feedback" 
-INSERT INTO Meetings (title, description, meeting_date, duration_minutes, location, agenda, created_by, status) VALUES
-(
-  'Week 5 Session 9: Robot Optimization & Solution Improvements',
-  'Focus on optimization and systematic debugging. Based on Official FLL Team Meeting Guide Session 9.',
-  DATEADD(day, 28, GETDATE()),
-  60,
-  'Team Meeting Room',
-  'Innovation Project Focus (Official FLL Guide Alignment):
-• Solution Improvement: Implement feedback from expert or mentor consultation
-• Prototype Refinement: Build more polished version based on suggestions
-• Research Evidence: Gather summary of expert insights and literature findings
-• Presentation Format Decision: Skit vs formal briefing vs role-play format
-• Community Impact: Document how solution will be shared or implemented
-
-Robot Mission Challenge Focus:
-• Systematic Debugging: Identify 3 weakest missions and analyze failure patterns
-• Code Optimization: Add sensor checkpoints for self-correction (gyro readings mid-run)
-• My Blocks Development: Create reusable subroutines for common tasks
-• Attachment Organization: Label all attachments and create quick-reference sheet
-• Reliability Focus: Aim for consistency over speed in mission execution
-• Battery Management: Ensure fresh charge for each practice session',
-  'Team Meeting Room',
-  'Innovation Project Focus:
-• Project Feedback Session: expert consultation or mentor review
-• Mid-season retrospective: assess progress and adjust goals
-• Solution refinement based on feedback
-
-Robot Mission Challenge Focus:
-• Robot Game Mock Round: 2.5-minute timed simulation
-• Robot Adjustments: fix critical issues identified in testing
-• Robot troubleshooting: identify and address reliability issues
-• Coopertition practice: share knowledge and receive feedback gracefully',
-  2, -- Coach Rajesh
-  'scheduled'
-);
+-- Week 5-6: Mid-Season Development & "Feedback"
 
 -- Week 5-6: Mid-Season Development & Feedback
-INSERT INTO Meetings (title, description, meeting_date, duration_minutes, location, agenda, created_by, status) VALUES
-(
-  'Week 5 Session 9: Robot Optimization & Solution Improvements',
-  'Focus on optimization and systematic debugging. Based on Official FLL Team Meeting Guide Session 9.',
-  DATEADD(day, 28, GETDATE()),
-  60,
-  'Team Meeting Room',
-  'Innovation Project Focus (Official FLL Guide Alignment):
-• Solution Improvement: Implement feedback from expert or mentor consultation
-• Prototype Refinement: Build more polished version based on suggestions
-• Research Evidence: Gather summary of expert insights and literature findings
-• Presentation Format Decision: Skit vs formal briefing vs role-play format
-• Community Impact: Document how solution will be shared or implemented
-
-Robot Mission Challenge Focus:
-• Systematic Debugging: Identify 3 weakest missions and analyze failure patterns
-• Code Optimization: Add sensor checkpoints for self-correction (gyro readings mid-run)
-• My Blocks Development: Create reusable subroutines for common tasks
-• Attachment Organization: Label all attachments and create quick-reference sheet
-• Reliability Focus: Aim for consistency over speed in mission execution
-• Battery Management: Ensure fresh charge for each practice session',
-  1, -- Coach Gopi
-  'scheduled'
-),
 (
   'Week 5 Session 10: Finalizing Robot & Drafting Presentation',
   'Finalize robot design and create comprehensive Innovation Project presentation. Based on Official FLL Team Meeting Guide Session 10.',

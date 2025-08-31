@@ -14,3 +14,33 @@ services:
     project: "."
     language: ts
     host: containerapp
+    docker:
+      path: ./Dockerfile
+    hooks:
+      predeploy:
+        windows:
+          shell: pwsh
+          run: |
+            npm ci
+            npm run build
+    env:
+      - name: NEXTAUTH_URL
+        value: https://$(web.uri)
+      - name: NEXTAUTH_SECRET
+        secret: true
+      - name: GOOGLE_CLIENT_ID
+        secret: true
+      - name: GOOGLE_CLIENT_SECRET
+        secret: true
+      - name: EMAIL_FROM
+        value: "LEGO Vibe <no-reply@example.com>"
+      - name: GOOGLE_OAUTH_USER
+        secret: true
+      - name: GOOGLE_OAUTH_CLIENT_ID
+        secret: true
+      - name: GOOGLE_OAUTH_CLIENT_SECRET
+        secret: true
+      - name: GOOGLE_OAUTH_REFRESH_TOKEN
+        secret: true
+      - name: GOOGLE_OAUTH_REDIRECT_URI
+        value: https://developers.google.com/oauthplayground

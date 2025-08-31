@@ -12,6 +12,9 @@ param location string
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
 
+@description('Container image to deploy for the web service (set by azd).')
+param imageName string = ''
+
 // Tags that should be applied to all resources.
 // 
 // Note that 'azd-service-name' tags should be applied separately to service host resources.
@@ -74,7 +77,7 @@ module web './app/containerapp.bicep' = {
     containerAppsEnvironmentName: '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: 'cr${resourceToken}'
     applicationInsightsConnectionString: monitoring.outputs.applicationInsightsConnectionString
-    imageName: 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
+  imageName: imageName
     environmentVariables: [
       {
         name: 'AZURE_SQL_SERVER'

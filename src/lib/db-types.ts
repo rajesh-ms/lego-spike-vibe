@@ -13,15 +13,21 @@ export type QueryInputs = {
 
   // Meeting fields
   title?: string;
-  description?: string;
+  description?: string | null;
   meeting_date?: Date;
   duration_minutes?: number;
-  location?: string;
-  agenda?: string;
-  created_by?: number;
+  location?: string | null;
+  agenda?: string | null;
+  created_by?: number | null;
   status?: string;
 
   // Learning entry fields
   entry_type?: string;
   content?: string;
+
+  // User fields
+  email?: string;
+  username?: string;
+  display_name?: string;
+  role?: 'kid' | 'coach';
 };

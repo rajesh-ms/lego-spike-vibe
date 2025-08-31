@@ -110,8 +110,8 @@ export default function MeetingsClient() {
   const loadData = async () => {
     try {
       const [meetingsRes, usersRes] = await Promise.all([
-        fetch('/api/meetings/'),
-        fetch('/api/users/')
+        fetch('/api/meetings'),
+        fetch('/api/users')
       ]);
 
       if (meetingsRes.ok && usersRes.ok) {
@@ -129,7 +129,7 @@ export default function MeetingsClient() {
 
   const loadLearningEntries = async (meetingId: number) => {
     try {
-      const res = await fetch(`/api/learning-entries/?meeting_id=${meetingId}`);
+  const res = await fetch(`/api/learning-entries?meeting_id=${meetingId}`);
       if (res.ok) {
         const data = await res.json();
         setLearningEntries(data.entries || []);
