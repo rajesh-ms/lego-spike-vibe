@@ -3,10 +3,11 @@ import { executeQuery } from '@/lib/database';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const meetingId = parseInt(params.id);
+    const { id } = await params;
+    const meetingId = parseInt(id);
     
     const result = await executeQuery(`
       SELECT 
@@ -30,10 +31,11 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const meetingId = parseInt(params.id);
+    const { id } = await params;
+    const meetingId = parseInt(id);
     const body = await request.json();
     
     const result = await executeQuery(`

@@ -435,60 +435,65 @@ export default function PythonEditor({
     <div className="w-full border rounded-lg overflow-hidden bg-white shadow-md">
       {/* Toolbar */}
       {showToolbar && (
-        <div className="bg-gray-100 p-3 border-b flex flex-wrap items-center gap-2">
-          <button
-            onClick={runCode}
-            className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium"
-          >
-            <Play size={16} />
-            Run Code
-          </button>
-          
-          <button
-            onClick={copyCode}
-            className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium"
-          >
-            <Copy size={16} />
-            Copy
-          </button>
-          
-          <button
-            onClick={downloadCode}
-            className="flex items-center gap-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium"
-          >
-            <Download size={16} />
-            Download
-          </button>
-          
-          <button
-            onClick={resetCode}
-            className="flex items-center gap-2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium"
-          >
-            <RotateCcw size={16} />
-            Reset
-          </button>
-
-          {hints.length > 0 && (
+        <div className="bg-gray-100 p-3 border-b flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 flex-1">
             <button
-              onClick={() => setShowHints(!showHints)}
-              className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium ml-auto"
+              onClick={runCode}
+              className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium min-h-[44px] touch-target"
             >
-              <Lightbulb size={16} />
-              Hints
+              <Play size={16} />
+              <span className="hidden xs:inline">Run Code</span>
+              <span className="xs:hidden">Run</span>
             </button>
-          )}
+            
+            <button
+              onClick={copyCode}
+              className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium min-h-[44px] touch-target"
+            >
+              <Copy size={16} />
+              <span className="hidden xs:inline">Copy</span>
+            </button>
+            
+            <button
+              onClick={resetCode}
+              className="flex items-center justify-center gap-2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium min-h-[44px] touch-target"
+            >
+              <RotateCcw size={16} />
+              <span className="hidden xs:inline">Reset</span>
+            </button>
+          </div>
+          
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={downloadCode}
+              className="flex items-center justify-center gap-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium min-h-[44px] touch-target"
+            >
+              <Download size={16} />
+              <span className="hidden sm:inline">Download</span>
+            </button>
+            
+            {hints.length > 0 && (
+              <button
+                onClick={() => setShowHints(!showHints)}
+                className="flex items-center justify-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium min-h-[44px] touch-target"
+              >
+                <Lightbulb size={16} />
+                <span className="hidden sm:inline">Hints</span>
+              </button>
+            )}
+          </div>
         </div>
       )}
 
       {/* Hints Panel */}
       {showHints && hints.length > 0 && (
         <div className="bg-yellow-50 border-b p-4">
-          <h4 className="font-semibold text-yellow-800 mb-2">💡 Helpful Hints:</h4>
-          <ul className="text-sm text-yellow-700 space-y-1">
+          <h4 className="font-semibold text-yellow-800 mb-2 text-sm">💡 Helpful Hints:</h4>
+          <ul className="text-xs sm:text-sm text-yellow-700 space-y-1">
             {hints.map((hint, index) => (
               <li key={index} className="flex items-start gap-2">
-                <span className="text-yellow-500">•</span>
-                {hint}
+                <span className="text-yellow-500 mt-1">•</span>
+                <span>{hint}</span>
               </li>
             ))}
           </ul>
@@ -504,7 +509,7 @@ export default function PythonEditor({
         options={{
           readOnly,
           minimap: { enabled: false },
-          fontSize: 16,
+          fontSize: 14,
           lineNumbers: 'on',
           roundedSelection: false,
           scrollBeyondLastLine: false,
@@ -522,6 +527,15 @@ export default function PythonEditor({
           cursorBlinking: 'smooth',
           renderLineHighlight: 'all',
           smoothScrolling: true,
+          scrollbar: {
+            vertical: 'auto',
+            horizontal: 'auto',
+            verticalScrollbarSize: 12,
+            horizontalScrollbarSize: 12,
+          },
+          // Mobile-specific options
+          mouseWheelZoom: false,
+          contextmenu: false,
         }}
         beforeMount={(monaco) => {
           // Configure Python language features
@@ -580,11 +594,19 @@ export default function PythonEditor({
 
       {/* Output Panel */}
       {output && (
-        <div className="bg-gray-900 text-green-400 p-4 text-sm font-mono">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-yellow-400">Console Output:</span>
+        <div className="bg-gray-900 text-green-400 p-4 max-h-48 sm:max-h-64 overflow-y-auto">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-yellow-400 text-sm font-semibold">📺 Console Output:</span>
+            <button
+              onClick={() => setOutput('')}
+              className="text-gray-400 hover:text-white text-xs bg-gray-700 px-2 py-1 rounded touch-target"
+            >
+              Clear
+            </button>
           </div>
-          <pre className="whitespace-pre-wrap">{output}</pre>
+          <pre className="text-xs sm:text-sm font-mono whitespace-pre-wrap break-words">
+            {output}
+          </pre>
         </div>
       )}
     </div>

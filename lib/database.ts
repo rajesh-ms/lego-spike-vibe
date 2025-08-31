@@ -48,7 +48,7 @@ export async function executeQuery(query: string, inputs?: Record<string, unknow
   return request.query(query);
 }
 
-export async function executeProcedure(procedureName: string, inputs?: Record<string, unknown>): Promise<sql.IResult<unknown>> {
+export async function executeProcedure(procedureName: string, inputs?: Record<string, unknown>): Promise<sql.IProcedureResult<unknown>> {
   const db = await getDatabase();
   const request = db.request();
   

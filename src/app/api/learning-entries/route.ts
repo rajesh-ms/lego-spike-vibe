@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { executeQuery } from '@/lib/database';
-import { CreateLearningEntryRequest } from '@/types/meetings';
+
+interface CreateLearningEntryRequest {
+  meeting_id: number;
+  entry_type: 'reflection' | 'goal' | 'achievement' | 'challenge' | 'note';
+  title?: string;
+  content: string;
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -43,9 +49,9 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body: CreateLearningEntryRequest = await request.json();
+    const body: CreateLearningEntryRequest & { user_id?: number } = await request.json();
     
-    // For now, assume user with id 3 is writing (you can add auth later)
+    // TODO: Get user ID from authentication
     const userId = body.user_id || 3;
     
     const result = await executeQuery(`
@@ -56,11 +62,11 @@ export async function POST(request: NextRequest) {
       meeting_id: body.meeting_id,
       user_id: userId,
       entry_type: body.entry_type,
-      title: body.title || null,
+      title: body.title || undefined,
       content: body.content
     });
     
-    return NextResponse.json({ entry: result.recordset[0] }, { status: 201 });
+    return NextResponse.json({ learning_entry: result.recordset[0] });
   } catch (error) {
     console.error('Error creating learning entry:', error);
     return NextResponse.json({ error: 'Failed to create learning entry' }, { status: 500 });

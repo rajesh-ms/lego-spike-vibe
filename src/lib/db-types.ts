@@ -7,6 +7,7 @@ export interface DbResult<T = unknown> {
 // Inputs that our app passes around for queries/procedures
 export type QueryInputs = {
   // Common filters
+  id?: number;
   meeting_id?: number;
   user_id?: number;
 

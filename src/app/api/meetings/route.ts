@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { executeQuery } from '@/lib/database';
-import { CreateMeetingRequest } from '@/types/meetings';
+
+interface CreateMeetingRequest {
+  title: string;
+  description?: string;
+  meeting_date: Date;
+  duration_minutes: number;
+  location?: string;
+  agenda?: string;
+  created_by: number;
+}
 
 export async function GET() {
   try {
@@ -33,11 +42,11 @@ export async function POST(request: NextRequest) {
       VALUES (@title, @description, @meeting_date, @duration_minutes, @location, @agenda, @created_by)
     `, {
       title: body.title,
-      description: body.description || null,
+      description: body.description || undefined,
       meeting_date: new Date(body.meeting_date),
       duration_minutes: body.duration_minutes || 60,
-      location: body.location || null,
-      agenda: body.agenda || null,
+      location: body.location || undefined,
+      agenda: body.agenda || undefined,
       created_by: createdBy
     });
     

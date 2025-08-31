@@ -2,7 +2,22 @@
 
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import { CreateLearningEntryRequest, User } from '@/types/meetings';
+
+// Inlined types (pragmatic build fix to avoid path alias resolution issues during CI/build)
+interface CreateLearningEntryRequest {
+  meeting_id: number;
+  entry_type: 'reflection' | 'goal' | 'achievement' | 'challenge' | 'note';
+  title?: string;
+  content: string;
+}
+
+interface User {
+  id: number;
+  username?: string;
+  display_name: string;
+  role: 'kid' | 'coach' | string;
+  email?: string;
+}
 
 interface LearningEntryModalProps {
   isOpen: boolean;

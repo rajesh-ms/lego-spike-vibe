@@ -2,7 +2,26 @@
 
 import { useState } from 'react';
 import { X, Save, Users, Target, CheckCircle, AlertCircle, Lightbulb, FileText } from 'lucide-react';
-import { Meeting, User } from '@/types/meetings';
+
+// Inlined types to avoid build-time path alias resolution issues
+interface User {
+  id: number;
+  username?: string;
+  display_name: string;
+  role?: string;
+  email?: string;
+}
+
+interface Meeting {
+  id: number;
+  title: string;
+  description?: string;
+  meeting_date: string | Date;
+  duration_minutes: number;
+  location?: string;
+  agenda?: string;
+  status?: string;
+}
 
 interface SessionNotesModalProps {
   isOpen: boolean;

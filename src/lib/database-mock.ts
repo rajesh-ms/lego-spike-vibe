@@ -137,7 +137,7 @@ export async function executeQuery(query: string, inputs?: QueryInputs): Promise
   const newId = Math.floor(Math.random() * 1000) + 100;
     
     if (query.includes('Meetings')) {
-  const newMeeting = {
+      const newMeeting = {
         id: newId,
         title: inputs?.title || 'New Meeting',
         description: inputs?.description || '',
@@ -147,13 +147,12 @@ export async function executeQuery(query: string, inputs?: QueryInputs): Promise
         agenda: inputs?.agenda || '',
         created_by: inputs?.created_by || 1,
         created_at: new Date(),
-        status: inputs?.status || 'scheduled'
+        status: inputs?.status || 'scheduled',
+        created_by_name: mockUsers.find(u => u.id === (inputs?.created_by || 1))?.display_name || 'Coach Gopi'
       };
       mockMeetings.push(newMeeting);
       return { recordset: [newMeeting] };
-    }
-    
-    if (query.includes('LearningEntries')) {
+    }    if (query.includes('LearningEntries')) {
   const newEntry = {
         id: newId,
         meeting_id: inputs?.meeting_id || 1,

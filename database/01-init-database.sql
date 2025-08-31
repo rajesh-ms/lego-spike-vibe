@@ -64,15 +64,15 @@ CREATE TABLE MeetingAttendance (
 
 -- Insert sample users (7 kids + 2 coaches)
 INSERT INTO Users (username, display_name, role, email) VALUES
-('coach_alex', 'Coach Alex', 'coach', 'alex@legoteam.com'),
-('coach_sam', 'Coach Sam', 'coach', 'sam@legoteam.com'),
-('emma_builder', 'Emma Thompson', 'kid', 'emma@student.com'),
-('liam_coder', 'Liam Johnson', 'kid', 'liam@student.com'),
-('sophia_designer', 'Sophia Davis', 'kid', 'sophia@student.com'),
-('noah_engineer', 'Noah Wilson', 'kid', 'noah@student.com'),
-('ava_programmer', 'Ava Brown', 'kid', 'ava@student.com'),
-('mason_robotics', 'Mason Miller', 'kid', 'mason@student.com'),
-('zoe_innovator', 'Zoe Garcia', 'kid', 'zoe@student.com');
+('coach_gopi', 'Coach Gopi', 'coach', 'gopi@legoteam.com'),
+('coach_rajesh', 'Coach Rajesh', 'coach', 'rajesh@legoteam.com'),
+('arnav_robotics', 'Arnav', 'kid', 'arnav@student.com'),
+('adi_programmer', 'Adi', 'kid', 'adi@student.com'),
+('kabir_engineer', 'Kabir', 'kid', 'kabir@student.com'),
+('ram_builder', 'Ram', 'kid', 'ram@student.com'),
+('darsh_coder', 'Darsh', 'kid', 'darsh@student.com'),
+('arjun_designer', 'Arjun', 'kid', 'arjun@student.com'),
+('anaisha_innovator', 'Anaisha', 'kid', 'anaisha@student.com');
 
 -- Create indexes for better performance
 CREATE INDEX IX_Meetings_Date ON Meetings(meeting_date);

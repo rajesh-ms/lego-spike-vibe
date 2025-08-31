@@ -34,13 +34,13 @@ export default function LessonPageClient({ unitId, lessonId }: LessonPageClientP
   const prevLesson = unit.lessons[lessonIndex - 1];  const nextUnit = curriculum.units[unitIndex + 1];
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-6 sm:py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <Link 
             href={`/units/${unit.id}`}
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors mb-4 touch-target"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to {unit.title}
@@ -50,23 +50,23 @@ export default function LessonPageClient({ unitId, lessonId }: LessonPageClientP
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+            className="flex flex-col gap-4 mb-6"
           >
             <div>
-              <div className="flex items-center gap-3 mb-2">
+              <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 bg-gradient-to-r from-red-400 to-yellow-400 rounded-lg flex items-center justify-center text-white font-bold text-sm">
                   {lessonIndex + 1}
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
                   {lesson.title}
                 </h1>
               </div>
-              <p className="text-lg text-gray-600 mb-4">
+              <p className="text-base sm:text-lg text-gray-600 mb-4 leading-relaxed">
                 {lesson.description}
               </p>
               
               {/* Lesson Stats */}
-              <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+              <div className="flex flex-wrap gap-3 sm:gap-4 text-sm text-gray-500">
                 <div className="flex items-center gap-1">
                   <Clock className="w-4 h-4" />
                   <span>{lesson.estimatedTime || lesson.duration || 30} min</span>
@@ -87,13 +87,13 @@ export default function LessonPageClient({ unitId, lessonId }: LessonPageClientP
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Lesson Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-6 order-2 lg:order-1"
           >
             {/* Lesson Content */}
             <div className="bg-white rounded-xl p-6 shadow-lg">
@@ -155,7 +155,7 @@ export default function LessonPageClient({ unitId, lessonId }: LessonPageClientP
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-6 order-1 lg:order-2"
           >            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <PythonEditor
                 value={code}
@@ -178,18 +178,18 @@ export default function LessonPageClient({ unitId, lessonId }: LessonPageClientP
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-12 flex flex-col md:flex-row justify-between gap-4"
+          className="mt-8 sm:mt-12 flex flex-col sm:flex-row justify-between gap-3 sm:gap-4"
         >
           {/* Previous Lesson */}
           {prevLesson ? (
             <Link 
               href={`/units/${unit.id}/lessons/${prevLesson.id}`}
-              className="group flex items-center gap-3 bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-red-200 flex-1"
+              className="group flex items-center gap-3 bg-white rounded-xl p-3 sm:p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-red-200 flex-1 touch-target"
             >
-              <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-red-500 transition-colors" />
-              <div>
-                <div className="text-sm text-gray-500">Previous Lesson</div>
-                <div className="font-semibold text-gray-800 group-hover:text-red-500 transition-colors">
+              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 group-hover:text-red-500 transition-colors flex-shrink-0" />
+              <div className="min-w-0">
+                <div className="text-xs sm:text-sm text-gray-500">Previous Lesson</div>
+                <div className="font-semibold text-sm sm:text-base text-gray-800 group-hover:text-red-500 transition-colors truncate">
                   {prevLesson.title}
                 </div>
               </div>
@@ -202,28 +202,28 @@ export default function LessonPageClient({ unitId, lessonId }: LessonPageClientP
           {nextLesson ? (
             <Link 
               href={`/units/${unit.id}/lessons/${nextLesson.id}`}
-              className="group flex items-center gap-3 bg-gradient-to-r from-red-500 to-yellow-500 text-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 flex-1 justify-end text-right"
+              className="group flex items-center gap-3 bg-gradient-to-r from-red-500 to-yellow-500 text-white rounded-xl p-3 sm:p-4 shadow-lg hover:shadow-xl transition-all duration-300 flex-1 justify-end text-right touch-target"
             >
-              <div>
-                <div className="text-sm text-white/80">Next Lesson</div>
-                <div className="font-semibold">
+              <div className="min-w-0">
+                <div className="text-xs sm:text-sm text-white/80">Next Lesson</div>
+                <div className="font-semibold text-sm sm:text-base truncate">
                   {nextLesson.title}
                 </div>
               </div>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
             </Link>
           ) : nextUnit ? (
             <Link 
               href={`/units/${nextUnit.id}`}
-              className="group flex items-center gap-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 flex-1 justify-end text-right"
+              className="group flex items-center gap-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl p-3 sm:p-4 shadow-lg hover:shadow-xl transition-all duration-300 flex-1 justify-end text-right touch-target"
             >
-              <div>
-                <div className="text-sm text-white/80">Next Unit</div>
-                <div className="font-semibold">
+              <div className="min-w-0">
+                <div className="text-xs sm:text-sm text-white/80">Next Unit</div>
+                <div className="font-semibold text-sm sm:text-base truncate">
                   {nextUnit.title}
                 </div>
               </div>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
             </Link>
           ) : (
             <Link 

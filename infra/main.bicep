@@ -24,8 +24,10 @@ var tags = {
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, resourceGroup().id, environmentName))
 
-// Generate a unique SQL admin password
-var sqlAdminPassword = '${toUpper(substring(resourceToken, 0, 1))}${substring(resourceToken, 1, 10)}!${substring(resourceToken, 11, 4)}A1'
+// Generate a SQL admin password (kept short to satisfy Bicep constraints)
+// Generate a password with sufficient length and variety for Azure SQL password policy
+// Format: <Upper><lower3><digits3>!A<rand2>
+var sqlAdminPassword = '${toUpper(substring(resourceToken, 0, 1))}${toLower(substring(resourceToken, 1, 4))}${substring(uniqueString(resourceToken), 0, 3)}!A${substring(uniqueString(resourceToken), 3, 2)}'
 
 // Monitor application with Azure Monitor
 module monitoring './shared/monitoring.bicep' = {

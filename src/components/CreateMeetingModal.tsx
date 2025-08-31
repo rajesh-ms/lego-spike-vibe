@@ -2,7 +2,16 @@
 
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import { CreateMeetingRequest } from '@/types/meetings';
+
+interface CreateMeetingRequest {
+  title: string;
+  description?: string;
+  meeting_date: Date;
+  duration_minutes: number;
+  location?: string;
+  agenda?: string;
+  created_by: number;
+}
 
 interface CreateMeetingModalProps {
   isOpen: boolean;
@@ -14,12 +23,25 @@ export default function CreateMeetingModal({ isOpen, onClose, onSuccess }: Creat
   const [formData, setFormData] = useState<CreateMeetingRequest>({
     title: '',
     description: '',
-    meeting_date: '',
+    meeting_date: new Date(),
     duration_minutes: 60,
     location: '',
-    agenda: ''
+  agenda: '',
+  created_by: 1
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Helper to format a Date into the value expected by <input type="datetime-local">
+  const formatDateInput = (date: Date) => {
+    if (!date) return '';
+    const pad = (n: number) => String(n).padStart(2, '0');
+    const year = date.getFullYear();
+    const month = pad(date.getMonth() + 1);
+    const day = pad(date.getDate());
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,10 +63,11 @@ export default function CreateMeetingModal({ isOpen, onClose, onSuccess }: Creat
         setFormData({
           title: '',
           description: '',
-          meeting_date: '',
+          meeting_date: new Date(),
           duration_minutes: 60,
           location: '',
-          agenda: ''
+          agenda: '',
+          created_by: 1
         });
       } else {
         console.error('Failed to create meeting');
@@ -107,8 +130,8 @@ export default function CreateMeetingModal({ isOpen, onClose, onSuccess }: Creat
               <input
                 type="datetime-local"
                 required
-                value={formData.meeting_date}
-                onChange={(e) => setFormData({ ...formData, meeting_date: e.target.value })}
+                value={formatDateInput(formData.meeting_date)}
+                onChange={(e) => setFormData({ ...formData, meeting_date: new Date(e.target.value) })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>

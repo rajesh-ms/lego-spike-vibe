@@ -225,13 +225,13 @@ export default function PlaygroundPage() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-6 sm:py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors mb-4 touch-target"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
@@ -241,48 +241,48 @@ export default function PlaygroundPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-8"
+            className="text-center mb-6 sm:mb-8"
           >
-            <div className="flex justify-center items-center gap-3 mb-4">
-              <Zap className="w-12 h-12 text-yellow-500" />
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-yellow-500 via-red-500 to-blue-500 bg-clip-text text-transparent">
+            <div className="flex justify-center items-center gap-2 sm:gap-3 mb-4">
+              <Zap className="w-8 h-8 sm:w-12 sm:h-12 text-yellow-500" />
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold bg-gradient-to-r from-yellow-500 via-red-500 to-blue-500 bg-clip-text text-transparent leading-tight">
                 Python Playground
               </h1>
             </div>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto px-4">
               Try out LEGO SPIKE Prime Python code! Experiment with motors, sensors, and the hub in a safe environment.
             </p>
           </motion.div>
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Examples Sidebar */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-4"
+            className="space-y-4 order-2 lg:order-1"
           >
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">📚 Example Programs</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">📚 Example Programs</h2>
             {exampleCodes.map((example, index) => (
               <button
                 key={index}
                 onClick={() => handleLoadExample(index)}
-                className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 ${
+                className={`w-full text-left p-3 sm:p-4 rounded-xl border-2 transition-all duration-200 touch-target ${
                   selectedExample === index
                     ? 'border-red-400 bg-red-50'
                     : 'border-gray-200 bg-white hover:border-red-200 hover:bg-red-25'
                 }`}
               >
-                <h3 className="font-bold text-gray-800 mb-2">{example.title}</h3>
-                <p className="text-sm text-gray-600">{example.description}</p>
+                <h3 className="font-bold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">{example.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{example.description}</p>
               </button>
             ))}
             
-            <div className="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-400 mt-6">
-              <h3 className="font-bold text-gray-800 mb-2">💡 Tips</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
+            <div className="bg-blue-50 rounded-xl p-3 sm:p-4 border-l-4 border-blue-400 mt-6">
+              <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">💡 Tips</h3>
+              <ul className="text-xs sm:text-sm text-gray-600 space-y-1">
                 <li>• Try modifying the example code</li>
                 <li>• Change motor speeds and directions</li>
                 <li>• Experiment with different images</li>
@@ -296,28 +296,29 @@ export default function PlaygroundPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2"
           >
             {/* Python Editor */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="bg-gray-800 text-white px-6 py-4 flex items-center justify-between">
-                <h2 className="text-xl font-bold flex items-center gap-2">
-                  <FileCode className="w-5 h-5" />
-                  Python Editor
+              <div className="bg-gray-800 text-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+                <h2 className="text-lg sm:text-xl font-bold flex items-center gap-2">
+                  <FileCode className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="hidden sm:inline">Python Editor</span>
+                  <span className="sm:hidden">Editor</span>
                 </h2>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 sm:gap-2">
                   <button
                     onClick={() => setCode('')}
-                    className="bg-gray-600 hover:bg-gray-500 px-3 py-1 rounded text-sm transition-colors"
+                    className="bg-gray-600 hover:bg-gray-500 px-2 sm:px-3 py-1 rounded text-xs sm:text-sm transition-colors touch-target"
                   >
                     Clear
                   </button>
                   <button
                     onClick={handleResetCode}
-                    className="bg-gray-600 hover:bg-gray-500 px-3 py-1 rounded text-sm flex items-center gap-1 transition-colors"
+                    className="bg-gray-600 hover:bg-gray-500 px-2 sm:px-3 py-1 rounded text-xs sm:text-sm flex items-center gap-1 transition-colors touch-target"
                   >
-                    <RotateCcw className="w-4 h-4" />
-                    Reset
+                    <RotateCcw className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Reset</span>
                   </button>
                   <button
                     onClick={handleRunCode}
